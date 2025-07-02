@@ -1,0 +1,8 @@
+{
+    "studentId": "p2026044",
+    "className": "DCITP/FT/1A/11",
+    "scripts": {
+        "watch": "node ./.vscode/watch.js",
+        "extract-git-history": "node ./.vscode/visualizer/extract-git-history.js"
+    }
+}
