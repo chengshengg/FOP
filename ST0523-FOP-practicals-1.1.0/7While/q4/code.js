@@ -30,7 +30,7 @@ function longestSubstringWithoutRepeats(string) {
     }
     return longest
 }
-"test"
+test
 // Your own test cases
 // e.g.;
 
