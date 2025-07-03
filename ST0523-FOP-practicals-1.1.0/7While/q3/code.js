@@ -16,20 +16,33 @@
  * detectCycle([2, 4, 1, 6, 3, 9, 5]); // false
  * detectCycle([2, 4, 1, 6, 3, 0, 5]); // true
  */
+// function detectCycle(jumps) {
+//     num = 0
+//     num2 = 1
+//     while(num<jumps.length && num2<jumps.length) {
+//         if(jumps[num] == 0 || jumps[num2] == 0) {
+//             return true
+//         }
+//         if(jumps[num] == jumps[num2]) {
+//             return true
+//         }
+//         else {
+//             num2++
+//         }
+//     }return false
+// }
+
 function detectCycle(jumps) {
-    num = 0
-    num2 = 1
-    while(num<jumps.length && num2<jumps.length) {
-        if(jumps[num] == 0 || jumps[num2] == 0) {
+    let num = 0
+    let arr = new Array(jumps.length).fill(false)
+    while (num<jumps.length) {
+        if(arr[num] == true){
             return true
+        }else {
+            arr[num] = true
         }
-        if(jumps[num] == jumps[num2]) {
-            return true
-        }
-        else {
-            num2++
-        }
-    }return false
+        num = jumps[num]
+    } return false
 }
 
 // Your own test cases
