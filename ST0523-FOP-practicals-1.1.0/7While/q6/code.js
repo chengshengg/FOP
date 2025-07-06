@@ -31,7 +31,21 @@
  * getStudentIds(1) => [6,9,2] // Not Found!
  *
  */
-function findStudent(getStudentIds, targetStudentId) {}
+function findStudent(getStudentIds, targetStudentId) {
+    let page = 0
+    while (true) {
+        arr = getStudentIds(page)
+        if (arr.length == 0){
+            return false
+        }
+        for (i=0;i<arr.length;i++){
+            if(arr[i] == targetStudentId){
+                return true
+            }
+        }
+        page++
+    }
+}
 
 // Your own test cases
 // e.g.;
