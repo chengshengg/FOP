@@ -25,23 +25,25 @@
  * 
  * Hint: Refer to the digitSum function in ../4Loops/q6/code.js
  */
+function digitSum(n){
+    digit = 0
+    sum = 0
+    for(i=0;i<(n+'').length;i++){
+        digit = Math.floor((n/10**i)%10)
+        sum += digit
+    }
+    return sum
+}
+
 function digitsSumToTarget(n, k) {
-    count = 0
+    num = 0
     arr = []
-    while (count<n) {
-        if (k<10) {
-            arr.push(k)
-            count++
+    while (arr.length<n){
+        if(digitSum(num)==k){
+            arr.push(num)
         }
-        for (i=1;i<k;i++) {
-            ans = (`${i}` + `${k-i}`)
-            arr.push(parseInt(ans))
-            count++
-            if(count==n) {
-                break
-            }
-        }
-    }   
+        num++
+    }
     return arr
 }
 
