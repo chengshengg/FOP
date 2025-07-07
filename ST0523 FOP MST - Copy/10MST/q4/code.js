@@ -14,6 +14,18 @@ function checkFreeAdmission(X, visitorAge) {
 // Your own test cases
 // e.g.;
 
-console.log(checkFreeAdmission(3, [12, 13, 21, 33, 18, 23, 31, 32, 33]));
+console.log(test(3, [12, 13, 21, 33, 18, 23, 31, 32, 33]));
 
-module.exports = checkFreeAdmission;
+module.exports = test;
+
+function test(n,k){
+        digitK = k + ''
+        digitN = n + ''
+        for(i=0;i<digitN.length;i++){
+            if(digitK.includes(digitN[i])){
+                return true
+            }
+        }
+    
+    return false
+}
