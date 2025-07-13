@@ -12,7 +12,13 @@
  * multiplication(5, 3); // [5, 10, 15]
  *
  */
-function multiplication(n, k) {}
+function multiplication(n, k) {
+    arr = []
+    for(i=0;i<k;i++){
+        arr.push((i+1)*n)
+    }
+    return arr
+}
 
 // Your own test cases
 // e.g.;

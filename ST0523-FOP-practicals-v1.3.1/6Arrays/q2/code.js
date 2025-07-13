@@ -23,7 +23,15 @@
  *
  *  Elements at position 1, 3, 5, 7, 9, and 11 matches its previous element
  */
-function adjacentMatchCount(strings) {}
+function adjacentMatchCount(strings) {
+    count = 0
+    for(i=0;i<strings.length;i++){
+        if(strings[i]==strings[i+1]){
+            count++
+        }
+    }
+    return count
+}
 
 // Your own test cases
 // e.g.;

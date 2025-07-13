@@ -35,7 +35,21 @@
  * Whole step:     E-->F#
  * Half step :     G->G#
  */
-function musicScale(rootNote) {}
+function musicScale(rootNote) {
+    arr = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    steps = [2, 2, 1, 2, 2, 2, 1]
+    result = []
+    pos = arr.indexOf(rootNote)
+    result.push(arr[pos])
+    for(i=0;i<steps.length;i++){
+        pos += steps[i]
+        if(pos>11){
+            pos -= 12
+        }
+        result.push(arr[pos])
+    }
+    return result
+}
 
 // Your own test cases
 // e.g.;
