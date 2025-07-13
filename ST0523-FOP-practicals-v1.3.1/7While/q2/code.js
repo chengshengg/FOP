@@ -6,19 +6,34 @@
  *
  * @note The test cases controls the values returned by Math.random.
  */
-function generate10RandomNumber() {
-    const array = [];
-    for (let i = 0; i < 10; i++) {
-        const randomNumber = Math.random() * 30 + 1;
-        if (array.includes(randomNumber)) {
-            // randomNumber already exists, don't add it
-            // decrease i by 1 to repeat this iteration
-            i--;
-        } else {
-            array.push(randomNumber);
+// function generate10RandomNumber() {
+//     const array = [];
+//     for (let i = 0; i < 10; i++) {
+//         const randomNumber = Math.random() * 30 + 1;
+//         if (array.includes(randomNumber)) {
+//             // randomNumber already exists, don't add it
+//             // decrease i by 1 to repeat this iteration
+//             i--;
+//         } else {
+//             array.push(randomNumber);
+//         }
+//     }
+//     return array;
+// }
+function generate10RandomNumber(){
+    count = 0
+    arr = []
+    while(count<10){
+        randomNumber = Math.random()*30 + 1
+        if(arr.includes(randomNumber)){
+            continue
+        }
+        else {
+            arr.push(randomNumber)
+            count++
         }
     }
-    return array;
+    return arr
 }
 
 // Your own test cases
