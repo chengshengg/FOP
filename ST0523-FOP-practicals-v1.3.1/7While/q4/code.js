@@ -13,7 +13,16 @@
  * @note The dice rolls may not be random. The test cases can control the values returned by `rollDice`.
  */
 
-function countNumberOfRolls(rollDice) {}
+function countNumberOfRolls(rollDice) {
+    sum = 0
+    count = 0
+    while(sum<30){
+        roll = rollDice()
+        sum += roll
+        count++
+    }
+    return count
+}
 
 // Your own test cases
 // e.g.;

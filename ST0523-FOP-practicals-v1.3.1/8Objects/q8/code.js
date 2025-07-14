@@ -28,7 +28,16 @@
  *
  */
 
-function makeStudentWithFunction(studentName, studentClass) {}
+function makeStudentWithFunction(studentName, studentClass) {
+    let newstudent = {
+        name:studentName,
+        class:studentClass,
+        getFormattedStudentInformation: function(){
+            return `${this.name} is in class ${this.class}`
+        }
+    }
+    return newstudent
+}
 
 // Your own test cases
 // e.g.;

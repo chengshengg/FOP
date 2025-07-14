@@ -14,7 +14,15 @@
  * // 1 + 2 + 3 + 4 + 5 + 6 = 21
  */
 
-function howManyTermsToSumToTarget(target) {}
+function howManyTermsToSumToTarget(target) {
+    ans = 0
+    count = 1
+    while(ans<target){
+        ans += count
+        count++
+    }
+    return count-1
+}
 
 // Your own test cases
 // e.g.;
