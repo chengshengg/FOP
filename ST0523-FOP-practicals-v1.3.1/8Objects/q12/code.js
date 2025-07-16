@@ -12,7 +12,15 @@
  *      // returns:  { 'Alice': ['ST0523', 'ST0501'], 'Bob': ['ST0523'], 'John': ['ST0501', 'ST2413'], 'Charlie': ['ST0501', 'ST2413'] }
  *
  */
-function reverseMapping(modules, moduleToTutors) {}
+function reverseMapping(modules, moduleToTutors) {
+    test = {}
+    for(i=0;i<modules.length;i++){
+    for(j=0;j<moduleToTutors[modules[i]].length;j++){
+        test.moduleToTutors[modules[i]][j]
+    }
+    }
+    
+}
 
 // Your own test cases
 // e.g.;
