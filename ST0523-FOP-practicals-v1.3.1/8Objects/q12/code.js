@@ -13,13 +13,19 @@
  *
  */
 function reverseMapping(modules, moduleToTutors) {
-    test = {}
+    result = {}
     for(i=0;i<modules.length;i++){
-    for(j=0;j<moduleToTutors[modules[i]].length;j++){
-        test.moduleToTutors[modules[i]][j]
-    }
-    }
-    
+        tutors = moduleToTutors[modules[i]]
+        for(j=0;j<tutors.length;j++){
+            tutor = tutors[j]
+            if(!result[tutor]){
+                result[tutor] = []
+                
+            }
+            result[tutor].push(modules[i])
+        }   
+    }   
+    return result
 }
 
 // Your own test cases
