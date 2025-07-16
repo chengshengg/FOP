@@ -69,7 +69,26 @@
  * [0][1], [1][1], [2][1],
  * [0][0], [1][0], [2][0],
  */
-function decodeMessage(message) {}
+function decodeMessage(message) {
+    width = Math.sqrt(message.length)
+    sum = ''
+    arranged = ''
+    divided = []
+    for(i=0;i<message.length;i++){
+        sum += message[i]
+        if (sum.length == width){
+            divided.push(sum)
+            sum = ''
+        }
+    }
+    
+    for(j=0;j<width;j++){
+        for(k=0;k<width;k++){
+            arranged += divided[k][width-1-j]
+        }
+    }
+    return arranged
+}
 
 // Your own test cases
 // e.g.;
