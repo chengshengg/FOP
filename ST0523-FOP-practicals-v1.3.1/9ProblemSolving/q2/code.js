@@ -47,7 +47,23 @@
  * - "pikachu(1)" --> already assigned, system adds (k), the smallest positive valid k is 2, becoming "pikachu(1)(2)"
  * Note: When a conflict is found, it does not modify any existing suffix but adds a new suffix.
  */
-function getFilenames(files) {}
+function getFilenames(files) {
+    result = []
+    count = 0
+    result.push(files[0])
+    for(i=1;i<files.length;i++){
+        str = files[i]
+        num = str.split(/[()]/)
+        sep = str.split("(")
+        if(result.includes(str)){
+            count++
+            result.push(`${files[i]}(${count})`)
+        } else {
+            result.push(files[i])
+        }
+    }
+    return result
+}
 
 // Your own test cases
 // e.g.;
