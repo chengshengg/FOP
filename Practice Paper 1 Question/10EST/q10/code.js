@@ -1,4 +1,17 @@
-function getTotalWeightByFruitType(fruitArray) {}
+function getTotalWeightByFruitType(fruitArray) {
+    totals = {}
+    for(i=0;i<fruitArray.length;i++){
+        fruit = fruitArray[i]
+        type = fruit.type
+        weight = fruit.weight
+        if(totals[type]!= undefined){
+            totals[type] += weight
+        }else {
+            totals[type] = weight
+        }
+    }
+    return totals
+}
 
 console.log(
     getTotalWeightByFruitType([
