@@ -1,0 +1,143 @@
+module.exports = {
+    testcases: [
+        {
+            input: [['b', 'a', 'n', 'a', 'n', 'a']],
+            expected: ['b', '#', 'n', '#', 'n', '#'],
+        },
+        {
+            input: [['a']],
+            expected: ['#'],
+        },
+        {
+            input: [['e']],
+            expected: ['#'],
+        },
+        {
+            input: [['i', 'o']],
+            expected: ['#', '#'],
+        },
+        {
+            input: [['i', 'u', 'o']],
+            expected: ['#', '#', '#'],
+        },
+        {
+            input: [['a', 'b']],
+            expected: ['#', 'b'],
+        },
+        {
+            input: [['a', 'b', 'c']],
+            expected: ['#', 'b', 'c'],
+        },
+        {
+            input: [['d', 'o', 'g']],
+            expected: ['d', '#', 'g'],
+        },
+        {
+            input: [['e', 'y', 'e']],
+            expected: ['#', 'y', '#'],
+        },
+        {
+            input: [['c', 'a', 'p']],
+            expected: ['c', '#', 'p'],
+        },
+        {
+            input: [['g', 'o', 'n', 'e']],
+            expected: ['g', '#', 'n', '#'],
+        },
+        {
+            input: [['m', 'y', 't', 'h']],
+            expected: ['m', 'y', 't', 'h'],
+        },
+        {
+            input: [['y', 'e', 'e', 't']],
+            expected: ['y', '#', '#', 't'],
+        },
+        {
+            input: [['p', 'a', 's', 's']],
+            expected: ['p', '#', 's', 's'],
+        },
+        {
+            input: [['s', 'h', 'a', 'r', 'e']],
+            expected: ['s', 'h', '#', 'r', '#'],
+        },
+        {
+            input: [['t', 'o', 'w', 'e', 'l']],
+            expected: ['t', '#', 'w', '#', 'l'],
+        },
+        {
+            input: [['k', 'i', 'n', 'g', 'd', 'o', 'm']],
+            expected: ['k', '#', 'n', 'g', 'd', '#', 'm'],
+        },
+        {
+            input: [['g', 'e', 'n', 'e', 'r', 'a', 't', 'e']],
+            expected: ['g', '#', 'n', '#', 'r', '#', 't', '#'],
+        },
+        {
+            input: [['j', 'a', 'v', 'a', 's', 'c', 'r', 'i', 'p', 't']],
+            expected: ['j', '#', 'v', '#', 's', 'c', 'r', '#', 'p', 't'],
+        },
+        {
+            input: [
+                [
+                    'a',
+                    'b',
+                    'c',
+                    'd',
+                    'e',
+                    'f',
+                    'g',
+                    'h',
+                    'i',
+                    'j',
+                    'k',
+                    'l',
+                    'm',
+                    'n',
+                    'o',
+                    'p',
+                    'q',
+                    'r',
+                    's',
+                    't',
+                    'u',
+                    'v',
+                    'w',
+                    'x',
+                    'y',
+                    'z',
+                ],
+            ],
+            expected: [
+                '#',
+                'b',
+                'c',
+                'd',
+                '#',
+                'f',
+                'g',
+                'h',
+                '#',
+                'j',
+                'k',
+                'l',
+                'm',
+                'n',
+                '#',
+                'p',
+                'q',
+                'r',
+                's',
+                't',
+                '#',
+                'v',
+                'w',
+                'x',
+                'y',
+                'z',
+            ],
+        },
+    ],
+    options: {
+        type: 'JSON',
+    },
+};

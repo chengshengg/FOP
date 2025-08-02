@@ -1,0 +1,27 @@
+module.exports = {
+    testcases: [
+        { input: [{ weight: 70, height: 1.75 }], expected: 22.857142857142858 },
+        { input: [{ weight: 27.91, height: 1.52 }], expected: 12.080159279778393 },
+        { input: [{ weight: 31.23, height: 1.55 }], expected: 12.998959417273673 },
+        { input: [{ weight: 34.73, height: 1.58 }], expected: 13.912033327992306 },
+        { input: [{ weight: 38.4, height: 1.6 }], expected: 14.999999999999996 },
+        { input: [{ weight: 42.25, height: 1.62 }], expected: 16.09891784788904 },
+        { input: [{ weight: 46.28, height: 1.65 }], expected: 16.999081726354454 },
+        { input: [{ weight: 50.5, height: 1.68 }], expected: 17.892573696145124 },
+        { input: [{ weight: 54.91, height: 1.7 }], expected: 19 },
+        { input: [{ weight: 59.51, height: 1.72 }], expected: 20.115603028664143 },
+        { input: [{ weight: 64.31, height: 1.75 }], expected: 20.99918367346939 },
+        { input: [{ weight: 69.31, height: 1.78 }], expected: 21.875394520893828 },
+        { input: [{ weight: 74.52, height: 1.8 }], expected: 23 },
+        { input: [{ weight: 79.94, height: 1.82 }], expected: 24.13355874894336 },
+        { input: [{ weight: 85.56, height: 1.85 }], expected: 24.99926953981008 },
+        { input: [{ weight: 91.41, height: 1.88 }], expected: 25.862947034857402 },
+        { input: [{ weight: 97.47, height: 1.9 }], expected: 27.000000000000004 },
+        { input: [{ weight: 103.76, height: 1.92 }], expected: 28.146701388888893 },
+        { input: [{ weight: 110.27, height: 1.95 }], expected: 28.99934253780408 },
+        { input: [{ weight: 117.02, height: 1.98 }], expected: 29.84899500051015 },
+    ],
+    options: {
+        type: 'floating point',
+    },
+};
