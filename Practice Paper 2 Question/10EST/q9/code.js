@@ -1,4 +1,12 @@
-function getMostCountriesVisited(travelArray) {}
+function getMostCountriesVisited(travelArray) {
+    let most = travelArray[0]
+    for(i=1;i<travelArray.length;i++){
+        if(most.countriesVisited.length < travelArray[i].countriesVisited.length){
+            most = travelArray[i]
+        }
+    }
+    return most
+}
 
 console.log(
     getMostCountriesVisited([

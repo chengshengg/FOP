@@ -1,4 +1,14 @@
-function getTotalSpendingBySingles(personArray) {}
+function getTotalSpendingBySingles(personArray) {
+    sum = 0
+    for(i=0;i<personArray.length;i++){
+        if(personArray[i].isSingle == true){
+            for(j=0;j<personArray[i].spendings.length;j++){
+                sum += personArray[i].spendings[j]
+            }
+        }
+    }
+    return sum
+}
 
 console.log(
     getTotalSpendingBySingles([
