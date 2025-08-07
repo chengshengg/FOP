@@ -1,0 +1,27 @@
+module.exports = {
+    testcases: [
+        { input: [{ radius: 0.1 }], expected: { radius: 0.1, size: 'small' } },
+        { input: [{ radius: 0.2 }], expected: { radius: 0.2, size: 'small' } },
+        { input: [{ radius: 0.5 }], expected: { radius: 0.5, size: 'small' } },
+        { input: [{ radius: 0.9 }], expected: { radius: 0.9, size: 'small' } },
+        { input: [{ radius: 1 }], expected: { radius: 1, size: 'small' } },
+        { input: [{ radius: 1.5 }], expected: { radius: 1.5, size: 'small' } },
+        { input: [{ radius: 2.2 }], expected: { radius: 2.2, size: 'small' } },
+        { input: [{ radius: 3.4 }], expected: { radius: 3.4, size: 'small' } },
+        { input: [{ radius: 4.1 }], expected: { radius: 4.1, size: 'small' } },
+        { input: [{ radius: 5.3 }], expected: { radius: 5.3, size: 'small' } },
+        { input: [{ radius: 6.0 }], expected: { radius: 6.0, size: 'big' } },
+        { input: [{ radius: 6.1 }], expected: { radius: 6.1, size: 'big' } },
+        { input: [{ radius: 6.2 }], expected: { radius: 6.2, size: 'big' } },
+        { input: [{ radius: 6.5 }], expected: { radius: 6.5, size: 'big' } },
+        { input: [{ radius: 7 }], expected: { radius: 7, size: 'big' } },
+        { input: [{ radius: 7.4 }], expected: { radius: 7.4, size: 'big' } },
+        { input: [{ radius: 8.3 }], expected: { radius: 8.3, size: 'big' } },
+        { input: [{ radius: 9.5 }], expected: { radius: 9.5, size: 'big' } },
+        { input: [{ radius: 10.9 }], expected: { radius: 10.9, size: 'big' } },
+        { input: [{ radius: 99 }], expected: { radius: 99, size: 'big' } },
+    ],
+    options: {
+        type: 'JSON',
+    },
+};
