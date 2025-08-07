@@ -43,7 +43,23 @@
  * - The tenth command calculates programming - is + fun, which is 10 - 4 + 1 = 7, and 7 maps to the variable "bar"
  *
  */
-function evaluateCommands(commands) {}
+function evaluateCommands(commands) {
+//     let result = {}
+//     let arr = []
+//     for(let i=0;i<commands.length;i++){
+//         let sum = 0
+//         let command = commands[i]
+//         let cut = command.split(" ")
+//         if(cut[0] == "def"){
+//             result[cut[0]] = parseInt(cut[1])
+//         }else{
+//             for(let j=1;j<cut.length;j+2){
+//                 sum += result[cut[j]]
+//             }
+//         }
+//     }
+//     return
+}
 
 // Your own test cases
 // e.g.;

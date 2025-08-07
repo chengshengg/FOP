@@ -44,11 +44,38 @@
  * @hint
  * You can use .sort() to sort the array
  */
-function tripYear(trips, queries) {}
+function tripYear(trips, queries) {
+    let result = {}
+    let years = []
+    for(let i=0;i<trips.length;i++){
+        let trip = trips[i]
+        let cut = trip.split(" ")
+        if(result[cut[0]] == undefined){
+            result[cut[0]] = []
+            result[cut[0]].push(parseInt(cut[1]))
+            
+        }else {
+            result[cut[0]].push(parseInt(cut[1]))
+        }
+        
+    }
+    for(let x in result){
+        result[x].sort((a, b) => a - b)
+    }
+
+    for(let j=0;j<queries.length;j++){
+        let query = queries[j]
+        let cut = query.split(" ")
+        let country = cut[0], num = cut[1]
+        years.push(result[country][num-1])
+       
+    }
+    return years
+}
 
 // Your own test cases
 // e.g.;
 
-console.log(tripYear(['Paris 2019', 'Paris 2020', 'London 2021'], ['Paris 1', 'Paris 2', 'London 1']));
+console.log(tripYear(['Paris 2019', 'Paris 2020', 'London 2021'], ['Paris 1', 'Paris 2', 'London 1'])); // [2019, 2020, 2021]
 
 module.exports = tripYear;

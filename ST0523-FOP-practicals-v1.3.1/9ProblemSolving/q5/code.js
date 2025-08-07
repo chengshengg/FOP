@@ -21,7 +21,19 @@
  * @hint
  * This uses nested for-loop
  */
-function zoomOut(array, zoomLevel) {}
+function zoomOut(array, zoomLevel) {
+    let result = []
+    for(let i=0;i<array.length;i+=zoomLevel){
+        let sum = 0
+        let count = 0
+        for(let j=0;j<zoomLevel && i+j<array.length;j++){
+            sum += array[i+j]
+            count++
+        }
+        result.push(sum/count)
+    }
+    return result
+}
 
 // Your own test cases
 // e.g.;
