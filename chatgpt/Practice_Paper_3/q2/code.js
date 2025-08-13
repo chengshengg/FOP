@@ -13,12 +13,12 @@ function getCategoryWiseTotals(items) {
     let result = {}
     for(let i=0;i<items.length;i++){
         let item = items[i]
-        let select = item.category
+        let category = item.category
         
-        if(result[select] == undefined){
-            result[select] = item.price
+        if(result[category] == undefined){ // or if(!(category in result))
+            result[category] = item.price
         }else{
-            result[select] += item.price
+            result[category] += item.price
         }
     }
     return result

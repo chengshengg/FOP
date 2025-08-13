@@ -17,6 +17,8 @@
 //         No two students will have the same average score
 
 function getHighestAverageScore(studentArray) {
+    let highest = 0
+    let who = null
     for(let i=0;i<studentArray.length;i++){
         let student = studentArray[i]
         let sum = 0
@@ -24,16 +26,13 @@ function getHighestAverageScore(studentArray) {
         for(let j=0;j<student.scores.length;j++){
             sum += student.scores[j]
         }
-        student.avg = sum/student.scores.length
-    }
-    for(let k=1;k<studentArray.length;k++){
-        let student = studentArray[k]
-        let highest = studentArray[0]
-        if(student.avg > highest.avg){
-            highest = student
+        let avg = sum/student.scores.length
+        if(avg>highest){
+            highest = avg
+            who = student.name
         }
-        return highest.name
     }
+    return who
 }
 
 console.log(getHighestAverageScore([
