@@ -1,10 +1,7 @@
 function addSize(circle) {
-    circle = {
-        radius: circle.radius,
-        size: circle.radius ** 2 * Math.PI
-    }
+    let area = circle.radius**2*Math.PI
     
-    if(circle.size>100){
+    if(area>100){
         circle.size = "big"
     }else{
         circle.size = "small"

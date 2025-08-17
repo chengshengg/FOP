@@ -1,5 +1,5 @@
 function getTopAchiever(studentArray) {
-    let best = ""
+    let best = null
     let highest = 0
     
     for(i=0;i<studentArray.length;i++){
@@ -9,10 +9,11 @@ function getTopAchiever(studentArray) {
                 count++
                 
             }
-            if(j==studentArray[i].scoreArray.length -1 && count>highest){
-                    highest = count
-                    best = studentArray[i].name
-                }
+        }
+        if(count>highest){
+            highest = count
+            let best = studentArray[i].name
+
         }
     }return best
 }

@@ -17,15 +17,15 @@ function getMostFrequentWord(text) {
             result[string[i]]++
         }
     }
-    highest = 0
-    what = null
+    let highest = 0
+    let what = null
     for(let x in result){
         if(result[x]>highest){
             highest = result[x]
-            who = x
+            what = x
         }
     }
-    return who
+    return what
 }
 
 console.log(getMostFrequentWord("apple orange apple banana orange apple"));

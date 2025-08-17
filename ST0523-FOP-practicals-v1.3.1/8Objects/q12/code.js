@@ -12,19 +12,34 @@
  *      // returns:  { 'Alice': ['ST0523', 'ST0501'], 'Bob': ['ST0523'], 'John': ['ST0501', 'ST2413'], 'Charlie': ['ST0501', 'ST2413'] }
  *
  */
-function reverseMapping(modules, moduleToTutors) {
-    result = {}
-    for(i=0;i<modules.length;i++){
-        tutors = moduleToTutors[modules[i]]
-        for(j=0;j<tutors.length;j++){
-            tutor = tutors[j]
-            if(!result[tutor]){
-                result[tutor] = []
+// function reverseMapping(modules, moduleToTutors) {
+//     result = {}
+//     for(i=0;i<modules.length;i++){
+//         tutors = moduleToTutors[modules[i]]
+//         for(j=0;j<tutors.length;j++){
+//             tutor = tutors[j]
+//             if(!result[tutor]){
+//                 result[tutor] = []
                 
+//             }
+//             result[tutor].push(modules[i])
+//         }   
+//     }   
+//     return result
+// }
+function reverseMapping(modules, moduleToTutors){
+    let result = {}
+    for(let i=0;i<modules.length;i++){
+        let module = modules[i]
+        for(let j=0;j<moduleToTutors[module].length;j++){
+            if(result[moduleToTutors[module][j]] == undefined){
+                result[moduleToTutors[module][j]] = []
+                result[moduleToTutors[module][j]].push(module)
+            }else{
+                result[moduleToTutors[module][j]].push(module)
             }
-            result[tutor].push(modules[i])
-        }   
-    }   
+        }
+    }
     return result
 }
 
