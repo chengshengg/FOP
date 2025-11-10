@@ -176,12 +176,97 @@ let input = require('readline-sync');
 
 // console.log(addNumbers(number1, number2))
 
-function sayHello(){
-  return "Hello, "
+// function sayHello(){
+//   return "Hello, "
+// }
+// function greeting(helloMessage, name){
+//   console.log(helloMessage() + name)
+// }
+// //pass sayHello as an argument to 'greeting' function
+// greeting(sayHello, 'Javascript!') //sayHello is a callback function
+// //Hello, Javascript!
+
+// amend the codes to create 2 more staff
+// kelly, 27 years old & lili 20 years old
+// print all the staff name and their age
+// you can also print all the properties of objects in table forms, console.table
+
+// function Person(name, age) {
+//     this.name = name,
+//     this.age = age,
+//     this.sayName = function (msg) {
+//     console.log(msg);
+
+//     console.log("Your age is " + this.age);
+//     let msgToEnquiry = () => {
+//     if (this.age < 18) {
+//       console.log("You are not required to report to CMPB for enlistment");
+
+//     } else {
+//         console.log("You are required to report to CMPB for enlistment");
+
+//     }
+// }
+
+//     msgToEnquiry();
+// }
+// }
+
+// const jack = new Person('Jack', 25)
+// const kelly = new Person('Kelly', 27)
+// const lili = new Person('Lili', 20)
+
+// jack.sayName("Check your age:")
+// kelly.sayName("Check your age:")
+// lili.sayName("Check your age:")
+
+// const staffList = [jack, kelly, lili]
+// console.table(staffList)
+
+// function sortArr(arr){
+//    return arr.sort(function (a,b){return a-b})
+// }
+
+// let sales = [12.3 , 43.5, 22.5, 11.5, 86.0 , 44.6, 32.6 ];
+// let footfallCount = [ 12, 0, 10, 1, 5, 20, 40, 67, 22, 12] ;
+// let dateJoin = ['July 2, 2020', 'January 10 2014', 'May 5, 2018'];
+
+// console.log(sortArr(sales))
+// console.log(sortArr(footfallCount))
+// console.log(sortArr(dateJoin))
+
+let fruits = ["Apple", "Orange", "Pear", "Watermelon", "Pineapple", "Durian", "Avocado" ];
+
+// Print out all items in the fruits array
+console.log(fruits)
+
+// Print the 4th element in the fruits array (Watermelon)
+console.log(fruits[3])
+
+// Change the element containing the string “Pineapple” to “Cherry”
+for(let i=0;i<fruits.length;i++){
+ if(fruits[i]=='Pineapple'){
+  fruits[i]='Cherry'
+ }
 }
-function greeting(helloMessage, name){
-  console.log(helloMessage() + name)
-}
-//pass sayHello as an argument to 'greeting' function
-greeting(sayHello, 'Javascript!') //sayHello is a callback function
-//Hello, Javascript!
+
+// Remove the last item in the fruits array
+fruits.pop()
+
+// Append a string containing “Coconut” into the fruits array
+fruits.push('Coconut')
+
+// Print out all items in the fruits array again
+console.log(fruits)
+
+// Assign the elements containing “Pear” and “Watermelon” into a new array (name of array : fruits2)
+fruits2 = fruits.slice(2, 4)
+
+// Print the fruits2 array
+console.log(fruits2)
+
+// sort the array to new array (name of array : fruits_sorted)
+fruits_sorted = fruits.sort()
+
+// Print the fruits_sorted array
+console.log(fruits_sorted)
