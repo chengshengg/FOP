@@ -235,38 +235,137 @@ let input = require('readline-sync');
 // console.log(sortArr(footfallCount))
 // console.log(sortArr(dateJoin))
 
-let fruits = ["Apple", "Orange", "Pear", "Watermelon", "Pineapple", "Durian", "Avocado" ];
+// let fruits = ["Apple", "Orange", "Pear", "Watermelon", "Pineapple", "Durian", "Avocado" ];
 
-// Print out all items in the fruits array
-console.log(fruits)
+// // Print out all items in the fruits array
+// fruits.forEach((element) => console.log(element))
 
-// Print the 4th element in the fruits array (Watermelon)
-console.log(fruits[3])
+// // Print the 4th element in the fruits array (Watermelon)
+// console.log(fruits[3])
 
-// Change the element containing the string “Pineapple” to “Cherry”
-for(let i=0;i<fruits.length;i++){
- if(fruits[i]=='Pineapple'){
-  fruits[i]='Cherry'
- }
+// // Change the element containing the string Pineapple” to Cherry”
+// for(let i=0;i<fruits.length;i++){
+//  if(fruits[i]=='Pineapple'){
+//   fruits[i]='Cherry'
+//  }
+// }
+
+// // Remove the last item in the fruits array
+// fruits.pop()
+
+// // Append a string containing Coconut” into the fruits array
+// fruits.push('Coconut')
+
+// // Print out all items in the fruits array again
+// console.log(fruits)
+
+// // Assign the elements containing Pear” and Watermelon” into a new array (name of array : fruits2)
+// fruits2 = fruits.slice(2, 4)
+
+// // Print the fruits2 array
+// console.log(fruits2)
+
+// // sort the array to new array (name of array : fruits_sorted)
+// fruits_sorted = fruits.sort()
+
+// // Print the fruits_sorted array
+// console.log(fruits_sorted)
+// stockPrices = [32.11, 22.12, 45.12, 31.20, 32.50, 44.12];
+
+// const mappedStockPrices = stockPrices.map((x) =>  x*100)
+// console.log(mappedStockPrices)
+
+// let noOfCommuters = [5, 12, 40, 60, 50, 40, 15, 4, 23];
+
+// const sum = noOfCommuters.reduce((x, y) => x+y)
+// console.log(sum)
+// let marks = [67, 80, 34, 40, 55, 70, 74, 80, 56, 47, 90, 50];
+
+// let filteredMarks = marks.filter((x) => x<50)
+// console.log(filteredMarks)
+// const person = {
+//     name: "Amit",
+//     age: 30,
+//     gender: "male"
+//   };
+
+// /* Code to print out the Output */
+// console.log(person)
+
+// let bookinfo = {
+//     bookTitle : "JavaScript from Beginner to Professional",
+//     author: {
+//         firstName: "Laurence",
+//         lastName: "Lars Svekis"
+//     },
+
+// getTitle : /* Write a function to return the book title */
+// function(){
+//  return this.bookTitle
+// },
+    
+// getAuthorName: /* Write a function to return the first name and last name of author */
+// function(){
+//  return this.author.firstName, this.author.lastName
+// }
+// };
+
+// /* Code to print out the Output */
+// console.log(bookinfo.getTitle())
+// console.log(bookinfo.getAuthorName())
+// const student = { 
+//     name: 'John',
+//     "my age": 20,
+//     "my hobbies": ['reading', 'games', 'coding'],
+// "say Hi" : function() {
+//   // complete the function to return the message as shown in the sample output
+// return `I am ${this.name} and my age is ${this["my age"]}.`
+// },
+//     "subject score": {
+//         maths: 90,
+//         science: 80
+//     }
+// };
+
+// /* Code to print out the Output */
+// console.log(typeof student)
+// console.log(student.name)
+// console.log(student["say Hi"]())
+// console.log(student["subject score"].maths)
+
+// function student(){ 
+//     this.name = 'John',
+//     this.age = 20,
+//     this.hobbies = ['reading', 'games', 'coding'],
+//   this.sayHi = function() {
+//   // complete the function to return the message as shown in the sample output
+// return `I am ${this.name} and my age is ${this.age}.`
+// },
+//     this.subjectScore = {
+//         maths: 90,
+//         science: 80
+//     }
+// };
+// const newStudent = new student()
+// console.log(typeof newStudent)
+// console.log(newStudent.name)
+// console.log(newStudent.sayHi())
+// console.log(newStudent.subjectScore.maths)
+
+phoneContact = {
+    ChongCS: "68704888",
+    TanKB: "68705888",
+    LimHT: "68704228",
+    LeeJane: "68702008",
 }
-
-// Remove the last item in the fruits array
-fruits.pop()
-
-// Append a string containing “Coconut” into the fruits array
-fruits.push('Coconut')
-
-// Print out all items in the fruits array again
-console.log(fruits)
-
-// Assign the elements containing “Pear” and “Watermelon” into a new array (name of array : fruits2)
-fruits2 = fruits.slice(2, 4)
-
-// Print the fruits2 array
-console.log(fruits2)
-
-// sort the array to new array (name of array : fruits_sorted)
-fruits_sorted = fruits.sort()
-
-// Print the fruits_sorted array
-console.log(fruits_sorted)
+const myPhoneBook = new Map(Object.entries(phoneContact))
+console.log(myPhoneBook)
+myPhoneBook.forEach((number)=>{
+    console.log(number)
+})
+console.log(myPhoneBook.get("ChongCS"))
+if(myPhoneBook.get("LimHT")){
+    console.log(true)
+}else console.log(false)
+myPhoneBook.delete('LimHT')
+myPhoneBook.forEach((number)=> console.log(number))
