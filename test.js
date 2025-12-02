@@ -370,6 +370,7 @@ let input = require('readline-sync');
 // myPhoneBook.delete('LimHT')
 // myPhoneBook.forEach((number)=> console.log(number))
 
+<<<<<<< HEAD
 // function checkMonth(userInput){
 //     let months = {
 //         "1": "January",
@@ -413,3 +414,68 @@ let input = require('readline-sync');
 //     .then(message => console.log(message))
 //     .catch(error => console.log(error));
 
+=======
+let share_price_01102023 = [12.3, 11.2, 10.8, 10.5, 11.5, 12.50, 9.50, 11.55];
+let share_price_02102023 = [10.3, 9.2, 9.2, 8.3, 9.5, 11.10, 9.90, 10.25];
+
+let shared_traded = [2200, 1200, 300];
+
+let accountHolder ={
+    "accountname" : "Lionel Chua",
+    "mobileNumber" : "99009911",
+    "accountNum" : "49200012",
+}
+
+let received_msg = "You won 100 points" ;
+
+let copy_share_price = [...share_price_01102023]
+let combined_share_price = [...share_price_01102023, ...share_price_02102023]
+share_price_01102023.push(12.33)
+accountHolder.tradingcredit = 200000
+
+let highestNum = share_price_01102023[0]
+let lowestNum = share_price_01102023[0]
+let highestNum2 = share_price_02102023[0]
+let lowestNum2 = share_price_02102023[0]
+
+for(let i=1;i<share_price_01102023.length;i++){
+    if(share_price_01102023[i] > highestNum){
+        highestNum = share_price_01102023[i]
+        
+    } else if(share_price_01102023[i] < lowestNum){
+        lowestNum = share_price_01102023[i]
+    }
+}
+for(let j=1;j<share_price_02102023.length;j++){
+    if(share_price_02102023[j] > highestNum2){
+        highestNum2 = share_price_02102023[j]
+        
+    } else if(share_price_02102023[j] < lowestNum2){
+        lowestNum2 = share_price_02102023[j]
+    }
+}
+
+function sumAll(...value){
+    let total = 0
+    value.forEach(element => {
+        total += element
+    })
+    return total
+}
+
+function averagePrice(total, count){
+    return total/count
+}
+totalShared = sumAll(combined_share_price)
+
+total1 = sumAll(...share_price_01102023)
+total2 = sumAll(...share_price_02102023)
+average1 = averagePrice(total1, share_price_01102023.length)
+average2 = averagePrice(total2, share_price_02102023.length)
+
+console.log(sumAll(...shared_traded))
+console.log(total1, total2)
+console.log(accountHolder.accountname, accountHolder.mobileNumber)
+let explodedMessage = [...received_msg]
+console.log(explodedMessage)
+>>>>>>> 6096780b3e2e8e17fe55d401e08a3c7bc91d247b
