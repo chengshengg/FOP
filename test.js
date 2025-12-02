@@ -352,20 +352,64 @@ let input = require('readline-sync');
 // console.log(newStudent.sayHi())
 // console.log(newStudent.subjectScore.maths)
 
-phoneContact = {
-    ChongCS: "68704888",
-    TanKB: "68705888",
-    LimHT: "68704228",
-    LeeJane: "68702008",
-}
-const myPhoneBook = new Map(Object.entries(phoneContact))
-console.log(myPhoneBook)
-myPhoneBook.forEach((number)=>{
-    console.log(number)
-})
-console.log(myPhoneBook.get("ChongCS"))
-if(myPhoneBook.get("LimHT")){
-    console.log(true)
-}else console.log(false)
-myPhoneBook.delete('LimHT')
-myPhoneBook.forEach((number)=> console.log(number))
+// phoneContact = {
+//     ChongCS: "68704888",
+//     TanKB: "68705888",
+//     LimHT: "68704228",
+//     LeeJane: "68702008",
+// }
+// const myPhoneBook = new Map(Object.entries(phoneContact))
+// console.log(myPhoneBook)
+// myPhoneBook.forEach((number)=>{
+//     console.log(number)
+// })
+// console.log(myPhoneBook.get("ChongCS"))
+// if(myPhoneBook.get("LimHT")){
+//     console.log(true)
+// }else console.log(false)
+// myPhoneBook.delete('LimHT')
+// myPhoneBook.forEach((number)=> console.log(number))
+
+// function checkMonth(userInput){
+//     let months = {
+//         "1": "January",
+//         "2": "February",
+//         "3": "March",
+//         "4": "April",
+//         "5": "May",
+//         "6": "June",
+//         "7": "July",
+//         "8": "August",
+//         "9": "September",
+//         "10": "October",
+//         "11": "November",
+//         "12": "December"
+//     }
+
+//     return months[userInput]
+// }
+// console.log(checkMonth(1))
+// function boilWater(temperature) {
+
+//     return new Promise((resolve, reject) => {
+
+//         console.log(`Checking water temperature: ${temperature}°C`);
+//         if (temperature >= 100) {
+//             resolve("Water is boiled. Ready to make tea!");
+// } else {
+//             reject("Water is not hot enough.");
+// }
+//     });
+// }
+
+// // Test case 1: Temperature = 100​
+
+// boilWater(100)
+//     .then(message => console.log(message))
+//     .catch(error => console.log(error));
+
+// // Test case 2: Temperature = 80​
+// boilWater(80)
+//     .then(message => console.log(message))
+//     .catch(error => console.log(error));
+
