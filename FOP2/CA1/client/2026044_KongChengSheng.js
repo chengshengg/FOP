@@ -460,7 +460,7 @@ async function myApp() {
             }
         }
     } catch (error) {
-        console.error("\nCritical Error:", error.message);
+        console.error("\nCritical Error: Cannot connect to server");
         console.error("\nTroubleshooting:");
         console.error("1. Make sure the server is running on http://localhost:8081");
         console.error("2. Start the server: cd server && node server.js");
