@@ -332,37 +332,31 @@ async function displayHighestCategory() {
         // Validate that we have categories
         if (!categoryMap || categoryMap.size === 0) {
             console.log("No product categories found.");
+            return; 
+        }
+        
+        // Array to store all transactions from all categories
+        let allTransactions = [];
+        
+        // Fetch all transactions from all categories
+        for (const [categoryName, categorySlug] of categoryMap) {
+            const categoryData = await getByProductCategory(categorySlug);
+            // Use concat to combine the arrays
+            allTransactions = allTransactions.concat(categoryData); 
+        }
+        
+        // Validate that we have transactions
+        if (allTransactions.length === 0) {
+            console.log("No transactions found.");
             return;
         }
         
-        // Array to store category totals
-        const categoryTotals = [];
-        
-        // Calculate total for each category
-        for (const [categoryName, categorySlug] of categoryMap) {
-            const categoryData = await getByProductCategory(categorySlug);
-            
-            // Calculate total amount using reduce()
-            // Callback: (sum, record) => accumulates the sum
-            const totalSum = categoryData.reduce((sum, record) => {
-                return sum + record.totalAmount;
-            }, 0);
-            
-            // Store category name and total
-            categoryTotals.push({
-                name: categoryName,
-                total: totalSum
-            });
-        }
-        
-        // Find category with highest total using reduce()
-        // Callback: (max, category) => compares and returns the maximum
-        const highest = categoryTotals.reduce((max, category) => {
-            return category.total > max.total ? category : max;
-        }, categoryTotals[0]);
-        
-        // Display result in required format
-        console.log(`${highest.name} : $${highest.total.toFixed(2)}\n`);
+        // Callback: (max, transaction) => compares and returns the one with higher totalAmount
+        const highestTransaction = allTransactions.reduce((max, transaction) => {
+            return transaction.totalAmount > max.totalAmount ? transaction : max;
+        }, allTransactions[0]);
+    
+        console.log(`${highestTransaction.productCategory} : $${highestTransaction.totalAmount.toFixed(2)}\n`);
     } catch (error) {
         console.error("Error in displayHighestCategory:", error.message);
     }
