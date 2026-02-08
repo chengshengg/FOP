@@ -1,0 +1,146 @@
+/* 
+Name: Kong Cheng Sheng
+Class: DIT/FT/1B/11
+Admin No: 2026044
+
+Payment Page Specific Styles
+*/
+
+/* ===== FILTER SECTION ===== */
+.filter-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-section h3 {
+    color: #1a365d;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* ===== PAYMENT BUTTONS ===== */
+.payment-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.payment-button {
+    background: white;
+    color: #1a365d;
+    border: 2px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.payment-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #0d9488;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.payment-button:hover {
+    border-color: #0d9488;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.payment-button:hover::before {
+    transform: scaleX(1);
+}
+
+.payment-button.selected {
+    background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+    color: white;
+    border-color: #0d9488;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.payment-button.selected::before {
+    display: none;
+}
+
+/* ===== RESULTS SECTION ===== */
+.results-header {
+    background: white;
+    padding: 24px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 0;
+}
+
+.results-header h3 {
+    color: #1a365d;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.results-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.results-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    background: #f8fafc;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.meta-item strong {
+    color: #1a365d;
+    font-weight: 600;
+}
+
+/* ===== NO SELECTION STATE ===== */
+.no-selection {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64748b;
+}
+
+.no-selection-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .filter-section {
+        padding: 20px;
+    }
+
+    .payment-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .results-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

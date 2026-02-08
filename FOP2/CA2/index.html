@@ -1,0 +1,125 @@
+<!-- 
+Name: Kong Cheng Sheng
+Class: DIT/FT/1B/11
+Admin No: 2026044
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retail Transaction System</title>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/index-styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <h1>📊 Retail Transaction Management System</h1>
+    </div>
+
+    <div class="container">
+        <!-- Page Header Section -->
+        <div class="page-header">
+            <h2>Dashboard</h2>
+            <p>Select a module to access transaction data and analytics</p>
+        </div>
+
+        <!-- Main Navigation Cards Grid -->
+        <div class="card-grid">
+            <!-- Transaction Records Module -->
+            <a href="transactions.html" class="nav-card">
+                <div class="icon">📈</div>
+                <h2>Transaction Records</h2>
+                <p>View detailed transaction data sorted by customer identification number in ascending order</p>
+                <span class="badge">5 Records Available</span>
+            </a>
+
+            <!-- Payment Analysis Module -->
+            <a href="payment.html" class="nav-card">
+                <div class="icon">💳</div>
+                <h2>Payment Analysis</h2>
+                <p>Filter and analyze transactions by payment method with detailed breakdowns</p>
+                <span class="badge">4 Methods Available</span>
+            </a>
+        </div>
+
+        <!-- System Status Monitoring Section -->
+        <div class="status-section">
+            <div class="status-header">
+                <h3>System Status</h3>
+            </div>
+            <div class="status-grid">
+                <!-- Backend Server Status (dynamically checked) -->
+                <div id="server-status" class="status-item">
+                    <div class="status-indicator"></div>
+                    <div class="status-text">
+                        <span class="status-label">Backend Server</span>
+                        <span class="status-value" id="server-text">Checking...</span>
+                    </div>
+                </div>
+
+                <!-- Frontend Application Status (always online) -->
+                <div class="status-item online">
+                    <div class="status-indicator"></div>
+                    <div class="status-text">
+                        <span class="status-label">Frontend Application</span>
+                        <span class="status-value">Active</span>
+                    </div>
+                </div>
+
+                <!-- Database Connection Status (always ready) -->
+                <div class="status-item online">
+                    <div class="status-indicator"></div>
+                    <div class="status-text">
+                        <span class="status-label">Database Connection</span>
+                        <span class="status-value">Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Retail Transaction Management System | DIT/FT/1B/11 Kong Cheng Sheng</p>
+        </div>
+    </div>
+
+    <!-- Backend Server Connection Check Script -->
+    <script type="module">
+        import { testConnection } from './js/modules/api.js';
+
+        /**
+         * Check if the backend server is reachable and update status indicator
+         * Tests connection to http://localhost:8081 and updates UI accordingly
+         */
+        async function checkServerStatus() {
+            const statusEl = document.getElementById('server-status');
+            const statusTextEl = document.getElementById('server-text');
+            
+            try {
+                // Attempt to connect to backend server
+                const isOnline = await testConnection();
+                
+                if (isOnline) {
+                    // Server is responding
+                    statusEl.className = 'status-item online';
+                    statusTextEl.textContent = 'Connected';
+                } else {
+                    // Server is not responding
+                    statusEl.className = 'status-item offline';
+                    statusTextEl.textContent = 'Disconnected';
+                }
+            } catch (error) {
+                // Connection attempt failed
+                statusEl.className = 'status-item offline';
+                statusTextEl.textContent = 'Disconnected';
+            }
+        }
+
+        // Run server status check on page load
+        checkServerStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!-- 
+Name: Kong Cheng Sheng
+Class: DIT/FT/1B/11
+Admin No: 2026044
+
+Description: Transaction Records Page
+Displays the first 5 retail transactions sorted by Customer ID in ascending order.
+Features: Statistics dashboard, real-time search, and sort toggle functionality.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Records</title>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-nav top-nav-with-back">
+        <div class="nav-title">
+            <h1>📊 Transaction Records</h1>
+            <p>Displaying first 5 records sorted by Customer ID</p>
+        </div>
+        <a href="index.html" class="back-button">← Dashboard</a>
+    </div>
+
+    <div class="container">
+        <!-- Page Header Section -->
+        <div class="page-header info-header">
+            <h2>Retail Transaction Data</h2>
+            <p>First 5 transaction records sorted in ascending order by Customer ID</p>
+            <span class="info-badge">📈 Data Source: Live API</span>
+        </div>
+
+        <!-- Statistics Dashboard - Shows summary statistics -->
+        <div class="stats-section">
+            <h3>📊 Transaction Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-value" id="total-count">-</div>
+                    <div class="stat-label">Total Transactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="avg-amount">$0.00</div>
+                    <div class="stat-label">Average Amount</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⬆️</div>
+                    <div class="stat-value" id="max-amount">$0.00</div>
+                    <div class="stat-label">Highest Amount</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⬇️</div>
+                    <div class="stat-value" id="min-amount">$0.00</div>
+                    <div class="stat-label">Lowest Amount</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Section - Real-time filtering by Customer ID -->
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="🔍 Search by Customer ID..."
+                    class="search-input"
+                >
+                <button id="clear-search" class="clear-button" style="display: none;">✕</button>
+            </div>
+            <div id="search-results-count" class="search-results"></div>
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-container"></div>
+        
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading transaction data...</div>
+        </div>
+        
+        <!-- Results Section - Contains transaction cards -->
+        <div style="display: none;" id="results-section">
+            <div class="section-header">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <h3>Transaction Records</h3>
+                    <!-- Sort Toggle Button -->
+                    <button id="sort-toggle" class="sort-button">
+                        <span id="sort-icon">⬆️</span> Sort: <span id="sort-order">Ascending</span>
+                    </button>
+                </div>
+            </div>
+            <div class="transactions-wrapper">
+                <!-- Transaction cards will be dynamically inserted here -->
+                <div id="transactions-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Component - Custom transaction card element -->
+    <script src="./js/components/transaction-card.js"></script>
+
+    <!-- Main Application Logic -->
+    <script type="module">
+        // Import API functions from module
+        import { getRetailData5 } from './js/modules/api.js';
+        
+        // Global variable to track current sort order
+        let currentSortOrder = 'asc';
+        
+        /**
+         * Load and display transaction data
+         * Main function that orchestrates data fetching and rendering
+         * Demonstrates: Async/await, error handling, DOM manipulation
+         */
+        async function loadTransactions() {
+            // Get DOM element references
+            const container = document.getElementById('transactions-container');
+            const loading = document.getElementById('loading');
+            const errorContainer = document.getElementById('error-container');
+            const resultsSection = document.getElementById('results-section');
+
+            try {
+                // Fetch first 5 records from API using async/await
+                const records = await getRetailData5();
+
+                // Validate that we received data
+                if (!records || records.length === 0) {
+                    throw new Error('No transaction records found');
+                }
+
+                // Sort records by customerID in ascending order
+                // Uses higher-order function .sort() with callback
+                const sortedRecords = [...records].sort((a, b) => {
+                    return a.customerID.localeCompare(b.customerID);
+                });
+
+                // Hide loading spinner and show results
+                loading.style.display = 'none';
+                resultsSection.style.display = 'block';
+
+                // Calculate and display statistics (total, average, max, min)
+                calculateStatistics(sortedRecords);
+
+                // Create transaction card for each record
+                // Uses higher-order function .forEach() with callback
+                sortedRecords.forEach((record, index) => {
+                    // Create custom Web Component element
+                    const card = document.createElement('transaction-card');
+                    
+                    // Set attributes for the Web Component
+                    card.setAttribute('index', index + 1);
+                    card.setAttribute('customer-id', record.customerID);
+                    card.setAttribute('price', record.price);
+                    card.setAttribute('payment-method', record.paymentMethod);
+                    card.setAttribute('total-amount', record.totalAmount);
+                    card.setAttribute('product-category', record.productCategory);
+                    
+                    // Append card to container
+                    container.appendChild(card);
+                });
+
+                // Initialize search functionality after cards are created
+                setupSearch();
+
+                // Initialize sort toggle functionality
+                setupSortToggle();
+                
+            } catch (error) {
+                // Error handling - display user-friendly error message
+                console.error('Error loading transactions:', error);
+                loading.style.display = 'none';
+                errorContainer.innerHTML = `
+                    <div class="error">
+                        <strong>⚠️ Error Loading Data</strong>
+                        <p>${error.message}</p>
+                        <br>
+                        <p>Please ensure the backend server is running:</p>
+                        <code>cd server && node server.js</code>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Calculate and display transaction statistics
+         * Demonstrates: Multiple uses of reduce() higher-order function
+         * @param {Array} records - Array of transaction objects
+         */
+        function calculateStatistics(records) {
+            // Validate we have data
+            if (!records || records.length === 0) {
+                return;
+            }
+            
+            // Total count
+            const total = records.length;
+            
+            // Calculate sum using reduce() - Higher-order function
+            // Callback: (accumulator, currentValue) => accumulator + currentValue
+            // Initial value: 0
+            const sum = records.reduce((acc, record) => {
+                return acc + record.totalAmount;
+            }, 0);
+            
+            // Calculate average (total sum divided by count)
+            const average = sum / total;
+            
+            // Find maximum using reduce() - Higher-order function
+            // Callback: (max, record) => return larger value
+            // Initial value: first record's totalAmount
+            const max = records.reduce((maxVal, record) => {
+                return record.totalAmount > maxVal ? record.totalAmount : maxVal;
+            }, records[0].totalAmount);
+            
+            // Find minimum using reduce() - Higher-order function
+            // Callback: (min, record) => return smaller value
+            // Initial value: first record's totalAmount
+            const min = records.reduce((minVal, record) => {
+                return record.totalAmount < minVal ? record.totalAmount : minVal;
+            }, records[0].totalAmount);
+            
+            // Update DOM elements with calculated values
+            document.getElementById('total-count').textContent = total;
+            document.getElementById('avg-amount').textContent = `$${average.toFixed(2)}`;
+            document.getElementById('max-amount').textContent = `$${max.toFixed(2)}`;
+            document.getElementById('min-amount').textContent = `$${min.toFixed(2)}`;
+        }
+
+        /**
+         * Setup search functionality
+         * Filters transaction cards in real-time as user types
+         * Demonstrates: Event listeners, DOM manipulation, string methods
+         */
+        function setupSearch() {
+            // Get DOM element references
+            const searchInput = document.getElementById('search-input');
+            const clearButton = document.getElementById('clear-search');
+            const resultsCount = document.getElementById('search-results-count');
+            
+            // Add event listener for input events (fires as user types)
+            searchInput.addEventListener('input', (e) => {
+                // Get search term (lowercase and trimmed for case-insensitive matching)
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                // Get all transaction cards
+                const cards = document.querySelectorAll('transaction-card');
+                let visibleCount = 0;
+                
+                // Show/hide clear button based on whether there's a search term
+                clearButton.style.display = searchTerm ? 'block' : 'none';
+                
+                // Filter cards using forEach - higher-order function
+                cards.forEach(card => {
+                    // Get customer ID from card attribute
+                    const customerId = card.getAttribute('customer-id').toLowerCase();
+                    
+                    // Check if customer ID includes search term
+                    if (searchTerm === '' || customerId.includes(searchTerm)) {
+                        // Show matching cards
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        // Hide non-matching cards
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update results count display
+                if (searchTerm) {
+                    resultsCount.textContent = `Showing ${visibleCount} of ${cards.length} transactions`;
+                    resultsCount.className = 'search-results highlight';
+                } else {
+                    resultsCount.textContent = '';
+                    resultsCount.className = 'search-results';
+                }
+            });
+            
+            // Clear search button handler
+            clearButton.addEventListener('click', () => {
+                // Clear input value
+                searchInput.value = '';
+                // Trigger input event to reset filter
+                searchInput.dispatchEvent(new Event('input'));
+                // Focus back on input
+                searchInput.focus();
+            });
+        }
+
+        /**
+         * Setup sort toggle functionality
+         * Toggles between ascending and descending order by Customer ID
+         * Demonstrates: Array manipulation, DOM reordering, sorting algorithms
+         */
+        function setupSortToggle() {
+            // Get DOM element references
+            const sortButton = document.getElementById('sort-toggle');
+            const container = document.getElementById('transactions-container');
+            
+            // Add click event listener to sort button
+            sortButton.addEventListener('click', () => {
+                // Get all current cards as an array using Array.from()
+                const cards = Array.from(container.querySelectorAll('transaction-card'));
+                
+                // Toggle the sort order between ascending and descending
+                currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+                
+                // Sort the cards array using higher-order function .sort()
+                cards.sort((a, b) => {
+                    // Get customer IDs from card attributes
+                    const idA = a.getAttribute('customer-id');
+                    const idB = b.getAttribute('customer-id');
+                    
+                    // Sort based on current order
+                    if (currentSortOrder === 'asc') {
+                        return idA.localeCompare(idB);  // Ascending order
+                    } else {
+                        return idB.localeCompare(idA);  // Descending order
+                    }
+                });
+                
+                // Clear the container (remove all cards)
+                container.innerHTML = '';
+                
+                // Re-append cards in new sorted order
+                cards.forEach(card => {
+                    container.appendChild(card);
+                });
+                
+                // Update button text to reflect current sort order
+                document.getElementById('sort-order').textContent = 
+                    currentSortOrder === 'asc' ? 'Ascending' : 'Descending';
+                    
+                // Update button icon to reflect current sort order
+                document.getElementById('sort-icon').textContent = 
+                    currentSortOrder === 'asc' ? '⬆️' : '⬇️';
+            });
+        }
+
+        // Initialize application when page loads
+        loadTransactions();
+    </script>
+</body>
+</html>

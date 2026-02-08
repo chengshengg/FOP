@@ -1,0 +1,215 @@
+<!-- 
+Name: Kong Cheng Sheng
+Class: DIT/FT/1B/11
+Admin No: 2026044
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Method Analysis</title>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/payment-styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-nav top-nav-with-back">
+        <div class="nav-title">
+            <h1>💳 Payment Method Analysis</h1>
+            <p>Filter and analyze transactions by payment type</p>
+        </div>
+        <a href="index.html" class="back-button">← Dashboard</a>
+    </div>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header info-header">
+            <h2>Payment Method Filter</h2>
+            <p>Select a payment method to view the top 5 highest-value transactions</p>
+        </div>
+
+        <!-- Payment Method Filter Section -->
+        <div class="filter-section">
+            <h3>Available Payment Methods</h3>
+            <div id="payment-buttons" class="payment-buttons">
+                <!-- Initial Loading State -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading payment methods...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Display Container -->
+        <div id="error-container"></div>
+        
+        <!-- Results Display Container -->
+        <div id="results"></div>
+    </div>
+
+    <!-- Web Component Definition -->
+    <script src="./js/components/transaction-card.js"></script>
+
+    <!-- Main Application Script -->
+    <script type="module">
+        import { getPaymentMethods, getTransactionsByPaymentMethod } from './js/modules/api.js';
+
+        // Track currently selected payment method
+        let currentSelected = null;
+
+        /**
+         * Load and display available payment methods as clickable buttons
+         */
+        async function loadPaymentMethods() {
+            const container = document.getElementById('payment-buttons');
+            const errorContainer = document.getElementById('error-container');
+
+            try {
+                // Fetch payment methods from API
+                const paymentMethodMap = await getPaymentMethods();
+                const sortedMethods = Array.from(paymentMethodMap.entries());
+
+                // Clear loading state
+                container.innerHTML = '';
+
+                // Create a button for each payment method
+                sortedMethods.forEach(([method, slug]) => {
+                    const button = document.createElement('button');
+                    button.className = 'payment-button';
+                    button.textContent = method;
+                    button.dataset.method = method;
+                    button.dataset.slug = slug;
+
+                    // Add click handler to load transactions for this method
+                    button.addEventListener('click', () => {
+                        selectPaymentMethod(button, method, slug);
+                    });
+
+                    container.appendChild(button);
+                });
+
+            } catch (error) {
+                console.error('Error loading payment methods:', error);
+                errorContainer.innerHTML = `
+                    <div class="error">
+                        <strong>⚠️ Error Loading Payment Methods</strong>
+                        <p>${error.message}</p>
+                        <br>
+                        <p>Please ensure the backend server is running on http://localhost:8081</p>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Handle payment method selection and trigger transaction loading
+         * @param {HTMLElement} button - The clicked button element
+         * @param {string} method - Display name of payment method
+         * @param {string} slug - URL-safe version for API call
+         */
+        async function selectPaymentMethod(button, method, slug) {
+            // Update UI to show selected state
+            document.querySelectorAll('.payment-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            button.classList.add('selected');
+            currentSelected = method;
+
+            // Load transactions for selected method
+            await loadTransactions(method, slug);
+        }
+
+        /**
+         * Fetch and display top 5 transactions for the selected payment method
+         * @param {string} method - Display name of payment method
+         * @param {string} slug - URL-safe version for API call
+         */
+        async function loadTransactions(method, slug) {
+            const resultsContainer = document.getElementById('results');
+            const errorContainer = document.getElementById('error-container');
+
+            // Show loading state
+            resultsContainer.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Loading transactions...</div>
+                </div>
+            `;
+
+            try {
+                // Fetch transactions from API
+                const transactions = await getTransactionsByPaymentMethod(slug);
+
+                // Handle empty results
+                if (!transactions || transactions.length === 0) {
+                    resultsContainer.innerHTML = `
+                        <div class="results-header">
+                            <h3>No Transactions Found</h3>
+                            <p>No transaction data available for ${method}</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Sort transactions by total amount (highest first)
+                const sortedTransactions = [...transactions].sort((a, b) => {
+                    return b.totalAmount - a.totalAmount;
+                });
+
+                // Get top 5 highest-value transactions
+                const top5 = sortedTransactions.slice(0, 5);
+
+                // Display results header with metadata
+                resultsContainer.innerHTML = `
+                    <div class="results-header">
+                        <h3>Top 5 Transactions - ${method}</h3>
+                        <p>Highest value transactions sorted by total amount (descending order)</p>
+                        <div class="results-meta">
+                            <div class="meta-item">
+                                <strong>${transactions.length}</strong> Total Transactions
+                            </div>
+                            <div class="meta-item">
+                                <strong>${top5.length}</strong> Displayed
+                            </div>
+                            <div class="meta-item">
+                                Payment Method: <strong>${method}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transactions-wrapper">
+                        <div id="transactions-container"></div>
+                    </div>
+                `;
+
+                const container = document.getElementById('transactions-container');
+
+                // Create transaction cards using Web Component
+                top5.forEach((record, index) => {
+                    const card = document.createElement('transaction-card');
+                    card.setAttribute('index', index + 1);
+                    card.setAttribute('customer-id', record.customerID);
+                    card.setAttribute('price', record.price);
+                    card.setAttribute('payment-method', record.paymentMethod);
+                    card.setAttribute('total-amount', record.totalAmount);
+                    card.setAttribute('product-category', record.productCategory);
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Error loading transactions:', error);
+                errorContainer.innerHTML = `
+                    <div class="error">
+                        <strong>⚠️ Error Loading Transactions</strong>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize page by loading payment methods
+        loadPaymentMethods();
+    </script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+/* 
+Name: Kong Cheng Sheng
+Class: DIT/FT/1B/11
+Admin No: 2026044
+
+Main Stylesheet - Global styles for all pages
+*/
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ===== TOP NAVIGATION BAR ===== */
+.top-nav {
+    background: linear-gradient(135deg, #1a365d 0%, #1e40af 100%);
+    color: white;
+    padding: 20px 40px;
+    margin: -20px -20px 40px -20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.top-nav h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.top-nav p {
+    opacity: 0.9;
+    margin-top: 5px;
+    font-size: 0.95rem;
+}
+
+/* Navigation with back button */
+.top-nav-with-back {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nav-title p {
+    opacity: 0.9;
+    margin-top: 3px;
+    font-size: 0.9rem;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== PAGE HEADERS ===== */
+.page-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.page-header h2 {
+    color: #1a365d;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.page-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Section headers (for content areas) */
+.section-header {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 0;
+}
+
+.section-header h3 {
+    color: #1a365d;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Info box header */
+.info-header {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #0d9488;
+}
+
+.info-header h2 {
+    color: #1a365d;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.info-header p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    display: inline-block;
+    background: #0d9488;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.info-badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #0d9488;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #dc2626;
+}
+
+.error strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.error code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* ===== WRAPPERS ===== */
+.transactions-wrapper {
+    background: white;
+    border-radius: 0 0 8px 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#transactions-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ===== STATISTICS SECTION ===== */
+.stats-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #0d9488;
+}
+
+.stats-section h3 {
+    color: #1a365d;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 24px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: #0d9488;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* Responsive - Stats on mobile */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== SEARCH SECTION ===== */
+.search-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.clear-button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.clear-button:hover {
+    background: #dc2626;
+}
+
+.search-results {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.search-results.highlight {
+    color: #0d9488;
+    font-weight: 600;
+}
+
+/* ===== SORT BUTTON ===== */
+.sort-button {
+    background: #0d9488;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-button:hover {
+    background: #0f766e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(13, 148, 136, 0.3);
+}
+
+.sort-button:active {
+    transform: translateY(0);
+}
+
+#sort-icon {
+    font-size: 1.1rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .top-nav {
+        padding: 15px 20px;
+        margin: -10px -10px 30px -10px;
+    }
+
+    .top-nav h1 {
+        font-size: 1.3rem;
+    }
+
+    .top-nav-with-back {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .page-header h2 {
+        font-size: 2rem;
+    }
+
+    .info-header {
+        padding: 20px;
+    }
+
+    .section-header {
+        padding: 15px 20px;
+    }
+}
